@@ -1,11 +1,14 @@
 package main
 
-import(
+import (
 	"fmt"
+	"github.com/jpvio/word-vis"
 	"os"
 )
 
-func main () {
+func main() {
+
+	wordvis.Run()
 	fmt.Println("no words yet")
 	os.Exit(0)
 }
