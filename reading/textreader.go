@@ -7,10 +7,14 @@ import (
 	"strings"
 )
 
-func ReadFileIntoWordArray(path string) []string {
+func ReadFileIntoWordArray(path string) ([]string, error) {
 	var result []string
 	// Open the file.
-	f, _ := os.Open("resources/file.txt")
+	f, err := os.Open("resources/file.txt")
+	if err != nil {
+		return result, err
+	}
+
 	// Create a new Scanner for the file.
 	scanner := bufio.NewScanner(f)
 
@@ -18,9 +22,7 @@ func ReadFileIntoWordArray(path string) []string {
 	// Loop over all lines in the file and print them.
 	for scanner.Scan() {
 		word := scanner.Text()
-		fmt.Println(word)
-
 		result = append(result, strings.ToLower(word))
 	}
-	return result
+	return result, nil
 }
